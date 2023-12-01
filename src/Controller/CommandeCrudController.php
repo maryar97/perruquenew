@@ -61,7 +61,9 @@ class CommandeCrudController extends AbstractController
             'usersId' => $usersId,
             'factId' => $factId,
             'prod' =>$prod,
-            'panier' => $repo->findBy(['panier_com' => $id]),
+            'commandes' => $commandeRepository->facture($id),
+
+            // 'panier' => $repo->findBy(['panier_com' => $id]),
 
         ]);
     }

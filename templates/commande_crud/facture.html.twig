@@ -44,38 +44,35 @@
                 <th>actions</th> #}
             </tr>
                 </thead>
-{# 
-                <tbody> #}
+
+                <tbody> 
                 {# <pre>
                     {{ dump(panier) }}
                 </pre> #}
-        {# {% for article in panier %}
+        {% for commande in commandes %}
             <tr>
-            <td>{{ commande.p_id }}</td>
+            <td>{{ commande.c_id }}</td>
             <td>{{ commande.p_nom }}</td>
                 <td>{{ commande.p_prix| format_currency('EUR', locale='fr') }}</td>
                 <td>{{ commande.p_quantite }}</td>
-                <td>{{ commande.p_SousTotal| format_currency('EUR', locale='fr') }}</td>
-                <td>{{ (commande.p_SousTotal * 0.2)| format_currency('EUR', locale='fr')}}</td>
-                <td>{{(commande.p_SousTotal + (commande.p_SousTotal * 0.2))| format_currency('EUR', locale='fr')}}</td> #}
-                {# <td>{{ commande.c_adLiv }}</td>
+                <td>{{ commande.p_total1| format_currency('EUR', locale='fr') }}</td>
+                <td>{{ (commande.p_total1 * 0.2)| format_currency('EUR', locale='fr')}}</td>
+                <td>{{(commande.p_total1 + (commande.p_total1 * 0.2))| format_currency('EUR', locale='fr')}}</td>
+                 {# <td>{{ commande.c_adLiv }}</td>
                 <td>{{ commande.c_adFac }}</td>
                 <td>{{ commande.user_id }}</td>
                 <td>{{ commande.user_email }}</td>
                 <td>{{ commande.user_tel }}</td>
-                <td>{{ commande.c_date ? commande.c_date|date('Y-m-d') : '' }}</td> #}
-                {# <td>{{ commande.c_date ? commande.c_date|date('Y-m-d H:i:s') : '' }}</td> #}
-                {# <td>{{ commande.p_SousTotal }}</td> #}
+                <td>{{ commande.c_date ? commande.c_date|date('Y-m-d') : '' }}</td> 
+                {<td>{{ commande.c_date ? commande.c_date|date('Y-m-d H:i:s') : '' }}</td> 
+                 <td>{{ commande.p_SousTotal }}</td>  #}
                 {# <td>{{ commande.comAdresseFacturation }}</td>
                 <td>{{ commande.comIsPaid ? 'Yes' : 'No' }}</td>
                 <td>{{ commande.comMoyenPaiement }}</td>
                 <td>{{ commande.comStripeSessionId }}</td>
                 <td>{{ commande.comPaypalId }}</td> #}
-                {# <td>      #}
-                {# <a href="{{ path('app_commande_crud_show', {'id': commande.id}) }}">show</a> #}
-                    {# <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">edit</a> #}
-                {# </td>
-  {% else %}
+               
+  {# {% else %} 
             <tr>
                 <td colspan="10">no records found</td>
             </tr>
@@ -101,7 +98,7 @@
                         </tr>
                           {% endfor %}
           </tfoot>
-    </table> #}
+    </table> #} 
 
     {# <a href="{{ path('app_commande_crud_new') }}">Create new</a> #}
     {# <p>Solde payable sous « délai de paiement » à réception de facture, par « mode de paiement ».</p>
@@ -110,4 +107,5 @@
    <div class='mt-5'> HairCompany </div>
     <div> SA au capital de  </div>
     </div>  #}
+    {% endfor %}
 {% endblock %} 

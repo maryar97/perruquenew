@@ -27,15 +27,12 @@ class CommandeRepository extends ServiceEntityRepository
     // automatically knows to select Products
     // the "p" is an alias you'll use in the rest of the query
     $qb = $this->createQueryBuilder('c')
-        //->select('Distinct c.id as c_id, u.id as user_id, u.email as user_email, u.uti_telephone as user_tel, produit.id as p_id, produit.pro_nom as p_nom, panier.pan_prix_unite as p_prix, panier.pan_quantite as p_quantite, panier.pan_prix_unite * panier.pan_quantite as p_SousTotal, c.com_adresse_facturation as c_adFac, c.com_adresse_livraison as c_adLiv, c.com_date as c_date, c.com_facture_id as c_facId, ad.adr_nom as nom,  ad.adr_prenom as prenom' )
-        // ->select('Distinct c.id as c_id, u.id as user_id, u.email as user_email, u.telephone as user_tel, produit.id as p_id, produit.sousrubriqueart as p_nom, panier.prix_unite as p_prix, panier.panier_quantite as p_quantite, panier.prix_unite * panier.panier_quantite as p_SousTotal, c.com_fact_id as c_factId' )
-        ->select('Distinct c.id as c_id,u.id as user_id,u.telephone as user_tel  ')
-        ->join('c.com_users', 'u')
-        // ->join('u.adresses', 'ad')
-        // ->join('c.paniers', 'panier')
-        //->join('panier.panier_prod', 'produit')
-        ->where('c.id = :comId')
-        ->setParameter('comId', $id);
+    ->select('c.id as c_id,u.id as user_id, u.email, produit.id as p_id, produit.sousrubriqueart as p_nom, panier.prix_unite as p_prix, panier.panier_quantite as p_quantite, panier.totalrecap as p_total1')
+    ->join('c.com_users', 'u')
+    ->join('c.paniers', 'panier')
+    ->join('panier.panier_prod', 'produit')
+    ->where('u.id = :comUsersId')
+    ->setParameter('comUsersId', 1);
     $query = $qb->getQuery();
     return $query->execute();
     //return $query->getResult();
