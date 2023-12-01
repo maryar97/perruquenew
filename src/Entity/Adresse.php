@@ -16,43 +16,38 @@ class Adresse
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresses')]
-    #[ORM\JoinColumn]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Users $users = null;
 
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_prenom = null;
+    private ?string $Adrprenom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_nom = null;
+    private ?string $Adrnom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_codepostal = null;
+    private ?string $Adrcodepostal = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_ville = null;
+    private ?string $Adrville = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_telephone = null;
+    private ?string $Adrtelephone = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adr_pays = null;
+    private ?string $Adrpays = null;
 
     #[ORM\OneToMany(mappedBy: 'com_adr_livr', targetEntity: Commande::class)]
     private Collection $commandes;
 
-    #[ORM\Column(length: 255)]
-    private ?string $adr_email = null;
-
-    #[ORM\ManyToOne(inversedBy: 'com_adr_fact')]
-    private ?Commande $commande = null;
-
-  
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Adremail = null;
 
     public function __construct()
     {
@@ -65,8 +60,8 @@ class Adresse
     {
         return $this->titre . '[-br]' . 
             $this->adresse . '-' . 
-            $this->adr_ville . '-' . 
-            $this->adr_pays;
+            $this->Adrville . '-' . 
+            $this->Adrpays;
     }
 
     public function getId(): ?int
@@ -100,24 +95,24 @@ class Adresse
 
     public function getAdrPrenom(): ?string
     {
-        return $this->adr_prenom;
+        return $this->Adrprenom;
     }
 
-    public function setAdrPrenom(string $adr_prenom): static
+    public function setAdrPrenom(string $Adrprenom): static
     {
-        $this->adr_prenom = $adr_prenom;
+        $this->Adrprenom = $Adrprenom;
 
         return $this;
     }
 
     public function getAdrNom(): ?string
     {
-        return $this->adr_nom;
+        return $this->Adrnom;
     }
 
-    public function setAdrNom(string $adr_nom): static
+    public function setAdrNom(string $Adrnom): static
     {
-        $this->adr_nom = $adr_nom;
+        $this->Adrnom = $Adrnom;
 
         return $this;
     }
@@ -136,48 +131,48 @@ class Adresse
 
     public function getAdrCodepostal(): ?string
     {
-        return $this->adr_codepostal;
+        return $this->Adrcodepostal;
     }
 
-    public function setAdrCodepostal(string $adr_codepostal): static
+    public function setAdrCodepostal(string $Adrcodepostal): static
     {
-        $this->adr_codepostal = $adr_codepostal;
+        $this->Adrcodepostal = $Adrcodepostal;
 
         return $this;
     }
 
     public function getAdrVille(): ?string
     {
-        return $this->adr_ville;
+        return $this->Adrville;
     }
 
-    public function setAdrVille(string $adr_ville): static
+    public function setAdrVille(string $Adrville): static
     {
-        $this->adr_ville = $adr_ville;
+        $this->Adrville = $Adrville;
 
         return $this;
     }
 
     public function getAdrTelephone(): ?string
     {
-        return $this->adr_telephone;
+        return $this->Adrtelephone;
     }
 
-    public function setAdrTelephone(string $adr_telephone): static
+    public function setAdrTelephone(string $Adrtelephone): static
     {
-        $this->adr_telephone = $adr_telephone;
+        $this->Adrtelephone = $Adrtelephone;
 
         return $this;
     }
 
     public function getAdrPays(): ?string
     {
-        return $this->adr_pays;
+        return $this->Adrpays;
     }
 
-    public function setAdrPays(string $adr_pays): static
+    public function setAdrPays(string $Adrpays): static
     {
-        $this->adr_pays = $adr_pays;
+        $this->Adrpays = $Adrpays;
 
         return $this;
     }
@@ -214,29 +209,15 @@ class Adresse
 
     public function getAdrEmail(): ?string
     {
-        return $this->adr_email;
+        return $this->Adremail;
     }
 
-    public function setAdrEmail(string $adr_email): static
+    public function setAdrEmail(string $Adremail): static
     {
-        $this->adr_email = $adr_email;
+        $this->Adremail = $Adremail;
 
         return $this;
     }
-
-    public function getCommande(): ?Commande
-    {
-        return $this->commande;
-    }
-
-    public function setCommande(?Commande $commande): static
-    {
-        $this->commande = $commande;
-
-        return $this;
-    }
-
-
 
     
     

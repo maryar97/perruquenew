@@ -48,7 +48,8 @@ class Commande
     private Collection $recapDetails;
 
 
-
+    #[ORM\Column(length: 255)]
+    private ?string $adr_fact = null;
 
     #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $date_fact = null;
@@ -56,7 +57,7 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Users $com_users = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $com_fact_id = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
@@ -75,11 +76,6 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'panier_com', targetEntity: Panier::class)]
     private Collection $paniers;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Adresse::class)]
-    private Collection $com_adr_fact;
-
-   
-
 
 
 
@@ -87,7 +83,6 @@ class Commande
     {
         $this->recapDetails = new ArrayCollection();
         $this->paniers = new ArrayCollection();
-        $this->com_adr_fact = new ArrayCollection();
     }
 
 
@@ -218,11 +213,41 @@ class Commande
         return $this->recapDetails;
     }
 
+    public function addRecapDetail(RecapDetails $recapDetail): static
+    {
+        if (!$this->recapDetails->contains($recapDetail)) {
+            $this->recapDetails->add($recapDetail);
+            $recapDetail->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecapDetail(RecapDetails $recapDetail): static
+    {
+        if ($this->recapDetails->removeElement($recapDetail)) {
+            // set the owning side to null (unless already changed)
+            if ($recapDetail->getCommande() === $this) {
+                $recapDetail->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
 
 
 
+    public function getAdrFact(): ?string
+    {
+        return $this->adr_fact;
+    }
 
-    
+    public function setAdrFact(string $adr_fact): static
+    {
+        $this->adr_fact = $adr_fact;
+
+        return $this;
+    }
 
     public function getDateFact(): ?\DateTimeImmutable
     {
@@ -338,38 +363,6 @@ class Commande
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Adresse>
-     */
-    public function getComAdrFact(): Collection
-    {
-        return $this->com_adr_fact;
-    }
-
-    public function addComAdrFact(Adresse $comAdrFact): static
-    {
-        if (!$this->com_adr_fact->contains($comAdrFact)) {
-            $this->com_adr_fact->add($comAdrFact);
-            $comAdrFact->setCommande($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComAdrFact(Adresse $comAdrFact): static
-    {
-        if ($this->com_adr_fact->removeElement($comAdrFact)) {
-            // set the owning side to null (unless already changed)
-            if ($comAdrFact->getCommande() === $this) {
-                $comAdrFact->setCommande(null);
-            }
-        }
-
-        return $this;
-    }
-
-
 
 
 

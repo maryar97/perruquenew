@@ -29,7 +29,6 @@ class RecapDetails
     #[ORM\Column(length: 255)]
     private ?string $totalRecap = null;
 
-   
 
     public function getId(): ?int
     {

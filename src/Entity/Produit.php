@@ -3,13 +3,13 @@
 namespace App\Entity;
 
 use App\Entity\Fournisseur;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\Collection;
-use Symfony\component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]

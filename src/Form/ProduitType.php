@@ -48,7 +48,7 @@ class ProduitType extends AbstractType
             ->add('prixachat', options:[
                 'label' => 'Prix'
             ])
-            ->add('stock', options:[
+            ->add('quantite', options:[
                 'label' => 'Unités en stock'
             ])
     

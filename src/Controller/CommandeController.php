@@ -87,7 +87,10 @@ class CommandeController extends AbstractController
             $commande->setTransporteurPrix($transporteur->getPrix());
             $commande->setIsPaid('bool');
             $commande->setMethode('stripe'); 
-            // $commande->setComAdrLivr($livraison);
+            $commande->setComAdrLivr($livraison);
+            $commande->setAdrFact($livraisonForCommande); 
+            $commande->setComFactId($commande->getId());
+            // $commande->setDateFact($datetimeimmutable);            // $commande->setComAdrLivr($livraison);
             // dd($commande);
             // $commande->setComFactId($comId);
             // $commande->setDateFact($datetimeimmutable);

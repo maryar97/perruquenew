@@ -40,7 +40,7 @@ class CommandeCrudController extends AbstractController
     #[Route('/facture/{id}', name: 'app_commande_facture', methods: ['GET'])]
     public function facture(CommandeRepository $commandeRepository, $id,PanierRepository $repo, AdresseRepository $adresseRepository): Response
     {
-        $adrFactId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getComAdrFact();
+        $adrFactId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getAdrFact();
         $comId = $commandeRepository->findOneBy(['com_fact_id' => $id])->getId();
         $createAt = $commandeRepository->findOneBy(['com_fact_id' => $id])->getCreateAt();
         $dateFact = $commandeRepository->findOneBy(['com_fact_id' => $id])->getCreateAt();

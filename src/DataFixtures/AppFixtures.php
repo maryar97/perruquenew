@@ -9,6 +9,7 @@ use App\Entity\Commande;
 use App\Entity\Categorie;
 use App\Entity\Commercial;
 use App\Entity\Fournisseur;
+use App\Entity\Transporteur;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -347,10 +348,9 @@ class AppFixtures extends Fixture
 
 
                 $commande1 = new Commande();
-                $commande1->setTransporteurNom('')
+                $commande1->setTransporteurNom('Colissimo')
                         ->setTransporteurPrix(10,0)
                         ->setLivraison('')
-                        ->setAdrFact('')
                         ->setComFactId(1)
                         ->setFactureTotalTtc(298)
                         ->setFactureTotalHt(270)
@@ -360,8 +360,15 @@ class AppFixtures extends Fixture
                         ->setCreateAt(new \DateTimeImmutable())
                         ->setMethode('')
                         ->setReference('')
+                        ->setAdrFact('')
                         ->setStripeSessionId('');
                         $manager->persist($commande1);
+
+                $transporteur = new Transporteur();
+                $transporteur->setNom('Colissimo')
+                             ->setContenu('Livraison en 2-3 jours ouvrés')
+                             ->setPrix(10);
+                             $manager->persist($transporteur);
 
 
                 $adresse1 = new Adresse();
@@ -797,7 +804,3 @@ class AppFixtures extends Fixture
         }
 
 }
-
-
-
-

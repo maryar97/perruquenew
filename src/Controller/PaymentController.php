@@ -35,34 +35,30 @@ class PaymentController extends AbstractController
     {
 
         $produitStripe = []; 
-        $total=0;
-
+        $total1=0; 
         $commande = $this->em->getRepository(Commande::class)->findOneBy(['reference' => $reference]);
 
         if(!$commande){
             return $this->redirectToRoute('cart_index');
         }
         
-
-        foreach($commande->getRecapDetails()->getValues() as $produit){
+        // dd($commande->getPanier());
+        foreach($commande->getPanier() as $panier){
             
-            $pttc=0;
-            $total1=0; 
-            $Facturetotaltva = 20;  
-
-            $produitData = $this->em->getRepository(Produit::class)->findOneBy(['sousrubriqueart' => $produit->getProduit()]);
+            //$produitData = $this->em->getRepository(Produit::class)->findOneBy(['sousrubriqueart' => $produit->getProduit()]);
+            $produit = $panier->getPanierProd();
             $produitStripe[] = [
                 'price_data' => [
                     'currency' => 'eur',
-                    'unit_amount' => $produitData->getPrixachat() * 100,
+                    'unit_amount' => $produit->getPrixachat() * 100,
                     'product_data' => [
-                        'name' => $produit->getProduit()
+                        'name' => $produit->getLibcourt()
                     ]
                 ], 
-                'quantity' => $produit->getQuantite()
+                'quantity' => $panier->getPanierQuantite()
             ];
         
-            $total1 += $produit->getPrixachat() *  $produit->getQuantite();
+            $total1 += $produit->getPrixachat() *  $panier->getPanierQuantite();
         }
 
         $produitStripe[] = [

@@ -20,25 +20,25 @@ class AdresseType extends AbstractType
             ->add('titre', options:[
                 'label' => 'Titre'
             ])
-            ->add('nom', options:[
+            ->add('adrnom', options:[
                 'label' => 'Nom'
             ])
-            ->add('prenom', options:[
+            ->add('adrprenom', options:[
                 'label' => 'Prénom'
             ])
             ->add('adresse', options:[
                 'label' => 'Adresse'
             ])
-            ->add('codepostal', options:[
+            ->add('adrcodepostal', options:[
                 'label' => 'Code postal'
             ])
-            ->add('ville', options:[
+            ->add('adrville', options:[
                 'label' => 'Ville'
             ])
-            ->add('telephone', options:[
+            ->add('adrtelephone', options:[
                 'label' => 'Téléphone'
             ])
-            ->add('pays', options:[
+            ->add('adrpays', options:[
                 'label' => 'Pays'
             ])
             ->add('users', EntityType::class, [

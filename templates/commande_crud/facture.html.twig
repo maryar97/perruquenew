@@ -13,9 +13,8 @@
                     <div>Date : {{ dateFact ? dateFact|date('Y-m-d') : '' }}</div>
                     
                 </div>
-            Client : n°{{ utiId }}, {{ adresse }} , {{ tel }}, {{ email }} 
-             <div> Client : n°{{ adrLivr.Id }}, {{ adrLivr.AdrNom}} {{ adrLivr.AdrPrenom}}  </div> 
-         <div> Adresse de livraison : {{ adrLivr.Adresse }}, {{ adrLivr.AdrCodePostal }}, {{adrLivr.AdrVille}}, {{ adrLivr.AdrPays}} </div>
+                <div> Client : n°{{ adrLivr.Id }}, {{ adrLivr.AdrNom}} {{ adrLivr.AdrPrenom}}  </div>
+        <div> Adresse de livraison : {{ adrLivr.Adresse }}, {{ adrLivr.AdrCodePostal }}, {{adrLivr.AdrVille}}, {{ adrLivr.AdrPays}} </div>
             <div> {{ adrLivr.AdrTelephone }}, {{ adrLivr.AdrEmail }}  </div>
             </div>
             {# Adresse de facturation : {{ adrFact.AdrNom }} {{ adrFact.AdrPrenom }} , {{ adrFact.AdrRue }} , {{ adrFact.AdrCodePostal }} {{ adrFact.AdrVille }} {{ adrFact.AdrPays }} #}
@@ -45,12 +44,12 @@
                 <th>actions</th> #}
             </tr>
                 </thead>
-
-                <tbody>
-                <pre>
+{# 
+                <tbody> #}
+                {# <pre>
                     {{ dump(panier) }}
-                </pre>
-        {% for article in panier %}
+                </pre> #}
+        {# {% for article in panier %}
             <tr>
             <td>{{ commande.p_id }}</td>
             <td>{{ commande.p_nom }}</td>
@@ -58,7 +57,7 @@
                 <td>{{ commande.p_quantite }}</td>
                 <td>{{ commande.p_SousTotal| format_currency('EUR', locale='fr') }}</td>
                 <td>{{ (commande.p_SousTotal * 0.2)| format_currency('EUR', locale='fr')}}</td>
-                <td>{{(commande.p_SousTotal + (commande.p_SousTotal * 0.2))| format_currency('EUR', locale='fr')}}</td>
+                <td>{{(commande.p_SousTotal + (commande.p_SousTotal * 0.2))| format_currency('EUR', locale='fr')}}</td> #}
                 {# <td>{{ commande.c_adLiv }}</td>
                 <td>{{ commande.c_adFac }}</td>
                 <td>{{ commande.user_id }}</td>
@@ -75,7 +74,7 @@
                 {# <td>      #}
                 {# <a href="{{ path('app_commande_crud_show', {'id': commande.id}) }}">show</a> #}
                     {# <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">edit</a> #}
-                {# </td> #}
+                {# </td>
   {% else %}
             <tr>
                 <td colspan="10">no records found</td>
@@ -102,13 +101,13 @@
                         </tr>
                           {% endfor %}
           </tfoot>
-    </table>
+    </table> #}
 
     {# <a href="{{ path('app_commande_crud_new') }}">Create new</a> #}
-    <p>Solde payable sous « délai de paiement » à réception de facture, par « mode de paiement ».</p>
+    {# <p>Solde payable sous « délai de paiement » à réception de facture, par « mode de paiement ».</p>
     <div>Pénalité de retard au taux annuel de « nombre » % </div>
 <div>En cas de retard de paiement, application d’une indemnité forfaitaire pour frais de recouvrement de 50 euros (article D. 441-5 du code du commerce).</div>
    <div class='mt-5'> HairCompany </div>
     <div> SA au capital de  </div>
-    </div> 
+    </div>  #}
 {% endblock %} 
