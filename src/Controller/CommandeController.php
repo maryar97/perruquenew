@@ -89,13 +89,14 @@ class CommandeController extends AbstractController
             $commande->setMethode('stripe'); 
             $commande->setComAdrLivr($livraison);
             $commande->setAdrFact($livraisonForCommande); 
-            $commande->setComFactId($commande->getId());
-            // $commande->setDateFact($datetimeimmutable);            // $commande->setComAdrLivr($livraison);
+            //$commande->setComFactId();
+            // $commande->setDateFact($datetimeimmutable);            
+            // $commande->setComAdrLivr($livraison);
             // dd($commande);
             // $commande->setComFactId($comId);
             // $commande->setDateFact($datetimeimmutable);
             $this->em->persist($commande);
-                        // dd($commande); 
+            // dd($commande); 
 
 
             foreach($cartService->getTotal() as $produit)
@@ -108,7 +109,6 @@ class CommandeController extends AbstractController
                 $panier->setPanierProd($produit['produit']);
                 $panier->setTotalRecap($produit['produit']->getPrixAchat() * $produit['quantite']);
                 $produit['produit']->setQuantite($produit['produit']->getQuantite() - $produit['quantite']); 
-        
                 $this->em->persist($panier);
                 $this->em->flush();
         }

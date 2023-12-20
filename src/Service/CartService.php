@@ -31,6 +31,7 @@ class CartService
         }else{
                 $cart[$id] = 1;
         }
+        
         $this->getSession()->set('cart', $cart);
         
     }

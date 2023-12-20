@@ -101,7 +101,7 @@ class CommandeCrudController extends AbstractController
     #[Route('/{id}/edit', name: 'app_commande_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Commande2Type::class, $commande);
+        $form = $this->createForm(Commande1Type::class, $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
