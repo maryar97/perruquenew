@@ -27,7 +27,7 @@ class CommandeRepository extends ServiceEntityRepository
     // automatically knows to select Products
     // the "p" is an alias you'll use in the rest of the query
     $qb = $this->createQueryBuilder('c')
-    ->select('c.id as c_id,u.id as user_id, u.email, produit.id as p_id, produit.sousrubriqueart as p_nom, panier.prix_unite as p_prix, panier.panier_quantite as p_quantite, panier.totalrecap as p_total1')
+    ->select('c.transporteurPrix as c_t, c.id as c_id,u.id as user_id, u.email, produit.id as p_id, produit.sousrubriqueart as p_nom, panier.prix_unite as p_prix, panier.panier_quantite as p_quantite, panier.totalrecap as p_total1')
     ->join('c.com_users', 'u')
     ->join('c.paniers', 'panier')
     ->join('panier.panier_prod', 'produit')

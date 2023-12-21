@@ -4,10 +4,8 @@ namespace App\Entity;
 
 use App\Repository\RecapDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: RecapDetailsRepository::class)]
-#[ApiResource]
 class RecapDetails
 {
     #[ORM\Id]

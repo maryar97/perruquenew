@@ -29,6 +29,8 @@
                 <th>Quantité</th>
                 <th>Total HT</th>
                 <th>TVA</th>
+                <th>Total TVA</th>
+                <th>Frais de port</th>
                 <th>Total TTC</th>
                 {# <th>Adresse</th>
                 <th>Adresse de facturation</th>
@@ -58,6 +60,9 @@
                 <td>{{ commande.p_total1| format_currency('EUR', locale='fr') }}</td>
                 <td>{{ (commande.p_total1 * 0.2)| format_currency('EUR', locale='fr')}}</td>
                 <td>{{(commande.p_total1 + (commande.p_total1 * 0.2))| format_currency('EUR', locale='fr')}}</td>
+                <td> {{ (commande.c_t)}} </td> 
+                <td>{{(commande.p_total1 + (commande.p_total1 * 0.2) + (commande.c_t))| format_currency('EUR', locale='fr')}}</td>
+
                  {# <td>{{ commande.c_adLiv }}</td>
                 <td>{{ commande.c_adFac }}</td>
                 <td>{{ commande.user_id }}</td>
