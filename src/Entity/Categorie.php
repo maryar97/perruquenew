@@ -6,8 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
+#[ApiResource]
 class Categorie
 {
     #[ORM\Id]

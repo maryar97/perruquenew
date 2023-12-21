@@ -6,8 +6,10 @@ use App\Repository\FactureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: FactureRepository::class)]
+#[ApiResource]
 class Facture
 {
     #[ORM\Id]
